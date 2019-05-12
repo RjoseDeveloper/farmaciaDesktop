@@ -397,55 +397,73 @@ public class VendaJpaController implements Serializable {
         }
     }
 
+  
     public List<Venda> getMaisVendidosPeriodo(Date i, Date f) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            if (f == null) {
+                q = em.createNativeQuery("select v.idproduto as idvenda, idproduto as idproduto,"
+                        + "count(v.qtd) as qtd"
+                        + " from vendas.venda v "
+                        + "where v.datavenda >= ? "
+                        + "group by v.idproduto order by qtd desc",Venda.class);
+                i.setHours(1);
+                q.setParameter(1, i);
+            } else {
+                q = em.createNativeQuery("select v.idproduto as idvenda, idproduto as idproduto,"
+//                        + "v.idvendedor,"
+//                        + "v.datavenda,"
+                        + "count(v.qtd) as qtd"
+//                        + "v.valor,"
+//                        + "v.seriefactura,"
+//                        + "v.idcliente,"
+//                        + "v.desconto,"
+//                        + "v.idvenda,"
+//                        + "v.datae,"
+//                        + "v.qc,"
+//                        + "v.estado,"
+////                        + "v.prec,"
+////                        + "v.iva,"
+////                        + "v.tdesc,"
+////                        + "v.tiva,"
+////                        + "v.datapag,"
+////                        + "v.qstock,"
+////                        + "v.qpac,"
+//                        + "v.caixa"
+                        + " from vendas.venda v "
+                        + "where v.datavenda >= ? and v.datavenda <= ? "
+                        + "group by v.idproduto order by qtd desc",Venda.class);
+                i.setHours(1);
+                f.setHours(23);
+//                q.setParameter("i", i);
+//                q.setParameter("f", f);
+                q.setParameter(1, i);
+                q.setParameter(2, f);
 
-        List<Venda> listas = new VendaJpaController(emf).findVendaEntities();
-      
-        Venda v = new Venda();
-        Produto p = new Produto();
-
-        for (int j = 0; j < listas.size(); j++) {
-            Venda lista = listas.get(j);
-            
-             int count_qtd = 0;
-
-            if (lista.getDatavenda().after(i) && lista.getDatavenda().before(f)) {
-
-                count_qtd += lista.getQtd();
-                
-                p.setNome(lista.getIdproduto().getNome());
-              
-                v.setIdproduto(p);
-                v.setQtd(count_qtd);
-                
-                vendas.add(v);
             }
-      
-        }
-
-//        EntityManager em = getEntityManager();
-//        Query q = null;
-//        try {
-//                if (f == null) {
-//                    q = em.createQuery("select v.idproduto as idproduto, v.prec as preco, sum(v.qtd) as qtd "
-//                            + "from Venda v where v.datavenda >= :i "
-//                            + "group by idvenda, v.idproduto, v.prec order by sum(v.qtd) desc");
+//                 if (f == null) {
+//                    q = em.createQuery("select v.idproduto as idvenda, v.idproduto as idproduto, v.prec as preco, sum(v.qtd) as qtd from Venda v where v.datavenda >= :i "
+//                            + "group by idvenda, v.idproduto, v.prec order by sum(v.qtd) desc",Venda.class);
 //                    i.setHours(1);
 //                    q.setParameter("i", i);
 //                } else {
-//                    q = em.createQuery("select sum(v.qtd) as qtd from Venda v order by sum(v.qtd) desc");
-////                    i.setHours(1);
-////                    f.setHours(23);
-////                    q.setParameter("i", i);
-////                    q.setParameter("f", f);
+//                    q = em.createQuery("select v.idproduto as idvenda, v.idproduto as idproduto, v.prec as preco, sum(v.qtd) as qtd from Venda v where v.datavenda >= :i and v.datavenda <= :f "
+//                            + "group by idvenda, v.idproduto, v.prec order by sum(v.qtd) desc",Venda.class);
+//                    i.setHours(1);
+//                    f.setHours(23);
+//                    q.setParameter("i", i);
+//                    q.setParameter("f", f);
 //                }
-//            q.setHint("eclipselink.refresh", true);
-        return vendas;
-
+            q.setHint("eclipselink.refresh", true);
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
     }
     
     
-       public List<Venda> getMaisVendidos(Date i, Date f) {
+    public List<Venda> getMaisVendidos(Date i, Date f) {
         EntityManager em = getEntityManager();
         Query q = null;
         try {
@@ -455,10 +473,10 @@ public class VendaJpaController implements Serializable {
 //                    i.setHours(1);
 //                    q.setParameter("i", i);
 //                } else {
-                    q = em.createQuery("SELECT v.idvenda, v.idproduto, v.prec, SUM(v.qtd) AS qtd FROM Venda v "
-                            + "group by idvenda, v.idproduto, v.prec order by qtd desc", Venda.class);
-                   
-                //}
+            q = em.createQuery("SELECT v.idvenda, v.idproduto, v.prec, SUM(v.qtd) AS qtd FROM Venda v "
+                    + "group by idvenda, v.idproduto, v.prec order by qtd desc", Venda.class);
+
+            //}
             q.setHint("eclipselink.refresh", true);
             return q.getResultList();
         } finally {

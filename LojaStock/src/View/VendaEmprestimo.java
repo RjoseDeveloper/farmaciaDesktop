@@ -134,7 +134,7 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
         tfcli.setVisible(false);
         tfcp.setVisible(false);
         tfemp.setVisible(false);
-        jButton1.setVisible(false);
+        //jButton1.setVisible(false);
         combobox(Comboproduto);
         comboboxe(cbemp);
         comboboxClient(jcClient);
@@ -478,6 +478,7 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
         txtDesc = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        jButton1 = new keeptoo.KButton();
         cbtquant = new javax.swing.JComboBox();
         cbtpreco = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
@@ -492,7 +493,6 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
         tfemp = new javax.swing.JTextField();
         tfcli = new javax.swing.JTextField();
         tfcp = new javax.swing.JTextField();
-        jButton1 = new keeptoo.KButton();
         labelDesconto = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -724,6 +724,21 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
+        jButton1.setText("VENDA A CRÉDITO");
+        jButton1.setkBackGroundColor(new java.awt.Color(51, 51, 51));
+        jButton1.setkEndColor(new java.awt.Color(0, 102, 102));
+        jButton1.setkHoverEndColor(new java.awt.Color(204, 204, 204));
+        jButton1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        jButton1.setkHoverStartColor(new java.awt.Color(153, 153, 153));
+        jButton1.setkPressedColor(new java.awt.Color(153, 153, 153));
+        jButton1.setkSelectedColor(new java.awt.Color(204, 204, 204));
+        jButton1.setkStartColor(new java.awt.Color(204, 204, 204));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -732,20 +747,21 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator3)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(btCloseVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(label_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5))
-                    .addComponent(txtDesc)
-                    .addComponent(txt_valor, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator3)
+                        .addComponent(txtDesc)
+                        .addComponent(txt_valor, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btCloseVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
@@ -774,9 +790,10 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCloseVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCloseVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -848,7 +865,7 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
                                     .addGap(18, 18, 18)
                                     .addComponent(btAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(cbtpreco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -944,21 +961,6 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("VENDA A CRÉDITO");
-        jButton1.setkBackGroundColor(new java.awt.Color(51, 51, 51));
-        jButton1.setkEndColor(new java.awt.Color(0, 102, 102));
-        jButton1.setkHoverEndColor(new java.awt.Color(204, 204, 204));
-        jButton1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        jButton1.setkHoverStartColor(new java.awt.Color(153, 153, 153));
-        jButton1.setkPressedColor(new java.awt.Color(153, 153, 153));
-        jButton1.setkSelectedColor(new java.awt.Color(204, 204, 204));
-        jButton1.setkStartColor(new java.awt.Color(204, 204, 204));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         labelDesconto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelDesconto.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -973,9 +975,7 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(247, 247, 247)
                         .addComponent(tfcli, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(tfcp, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1011,16 +1011,11 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         jDesktopPane1.add(jPanel2);
@@ -1734,10 +1729,12 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
     }//GEN-LAST:event_vendaListaMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         if (jtable_carrinha.getRowCount() < 0) {
             JOptionPane.showMessageDialog(this, "Seleccione os produtos para venda", "Atencao", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
         int tve = ((Cliente) jcClient.getSelectedItem()).getIdempresa().getTipovend();
         if (jcClient.getSelectedItem().equals("") || (tve != 1 && tve != 2)) {
             JOptionPane.showMessageDialog(this, "Selecione um Cliente de Venda a Credito", "Atencao", JOptionPane.WARNING_MESSAGE);
@@ -1746,8 +1743,12 @@ public final class VendaEmprestimo extends javax.swing.JDialog {
         }
 
         new SwingWorker() {
+            
+            
             @Override
             protected Object doInBackground() throws Exception {
+                //JOptionPane.showMessageDialog(null, "Seleccione os produtos para venda", "Atencao", JOptionPane.WARNING_MESSAGE);
+            
                 Date d = new Date();
                 //                String s = new SeriefacturaJpaController(emf).findSeriefacturaEntities().get(0).getSeriefactura();
                 //                String ss = (Integer.parseInt(s) + 1) + "";

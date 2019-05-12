@@ -5,13 +5,8 @@
  */
 package View;
 
-import static View.VendaEmprestimo.lpro;
-import static View.VendaEmprestimo.lproe;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
-import com.toedter.calendar.JDateChooser;
-import controller.ClienteJpaController;
-import controller.EmprestimoJpaController;
 import controller.EntradaJpaController;
 import controller.FproformaJpaController;
 import controller.ProdutoJpaController;
@@ -26,10 +21,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 
-import java.sql.CallableStatement;
 import java.util.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -43,7 +35,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -53,9 +44,6 @@ import metodos.ButtonColumn;
 import metodos.ControllerAcess;
 import metodos.MoviementoCtr;
 import metodos.ValidarInteiro;
-import metodos.ValidarString;
-import modelo.Cliente;
-import modelo.Emprestimo;
 import modelo.Entrada;
 import modelo.EntradaPK;
 import modelo.Fproforma;
@@ -64,7 +52,6 @@ import modelo.Venda;
 import modelo.Vendaanulada;
 import modelo.Vendedor;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -82,7 +69,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
     Map parametros = new HashMap<>();
     EntityManagerFactory emf = new ControllerAcess().getEntityManagerFactory();
     private final DefaultTableModel vmodel = new DefaultTableModel(null, new String[]{"Produto", "Preco", "Itens", "Qtd", "Total", "desc(%)", "Vendedor", "Data de Venda", "Estado"});
-    private final DefaultTableModel vmodel2 = new DefaultTableModel(null, new String[]{"Produto", "Preco", "Itens", "Qtd", "Total"});
+    private final DefaultTableModel vmodel2 = new DefaultTableModel(null, new String[]{"Codigo", "Produto", "Preco", "Qtd", "Total"});
     private final DefaultTableModel fmodel = new DefaultTableModel(null, new String[]{"id", "Nro Factura", "Client/Empresa", "Vendedor", "Data de Venda", "T. Desc", "T. IVA", "Total", "Estado", "Ver", "Editar", "Anular"});
     private final DefaultTableModel mvmodel = new DefaultTableModel(null, new String[]{"Data", "Tipo Movimento", "qtd de itens", "preco", "Nr. Lote / Serie", "Armazem", "Loja", "Estado", "Utilizador"});
     private final DefaultTableModel pmodel = new DefaultTableModel(null, new String[]{"id", "Nro Doc", "Client/Empresa", "Vendedor", "Data de Emissao", "T. Desc", "T. IVA", "Total", "Ver"});
@@ -110,15 +97,15 @@ public class ConsultasInternas extends javax.swing.JDialog {
         this.client = c;
         txtsfact.setDocument(new ValidarInteiro());
         comboboxp(Comboproduto, support);
-        
+
         jdInicio.setDate(n);
-        
+
         listavedas = new VendaJpaController(emf).getVendaPeriodo(n, null, Comboproduto.getSelectedItem());
 
         mostraVenda();
-      
+
         this.modeloProduto.setAutoCreateRowSorter(true);
-         
+
 //            cbTipoPesquisa.removeAllItems();
 //            cbTipoPesquisa.addItem("Mais Vendidos");
 //            cbTipoPesquisa.addItem("Menos Vendidos");
@@ -218,8 +205,8 @@ public class ConsultasInternas extends javax.swing.JDialog {
         jdInicio4 = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        webButton1 = new com.alee.laf.button.WebButton();
-        webButton2 = new com.alee.laf.button.WebButton();
+        btnMaisVendas = new com.alee.laf.button.WebButton();
+        btnMenosVenda = new com.alee.laf.button.WebButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         tabelaMaisVend = new javax.swing.JTable();
         lbsalmed2 = new javax.swing.JLabel();
@@ -236,10 +223,10 @@ public class ConsultasInternas extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(labelHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(494, 494, 494))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +314,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jBpesquisarProdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Comboproduto, 0, 432, Short.MAX_VALUE)
+                .addComponent(Comboproduto, 0, 471, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -378,7 +365,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addComponent(lbtotalitem, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(273, 273, 273)
                 .addComponent(lbsalmed, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(416, Short.MAX_VALUE))
         );
         painelVendaLayout.setVerticalGroup(
             painelVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,10 +373,10 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(painelVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbtotalitem, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(lbtotalitem, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(lbsalmed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -567,7 +554,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
         painelVenda1Layout.setHorizontalGroup(
             painelVenda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVenda1Layout.createSequentialGroup()
-                .addContainerGap(453, Short.MAX_VALUE)
+                .addContainerGap(492, Short.MAX_VALUE)
                 .addComponent(lbdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(lbiva, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -584,10 +571,10 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addGroup(painelVenda1Layout.createSequentialGroup()
                     .addGap(531, 531, 531)
                     .addComponent(lbsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(586, Short.MAX_VALUE)))
+                    .addContainerGap(625, Short.MAX_VALUE)))
             .addGroup(painelVenda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVenda1Layout.createSequentialGroup()
-                    .addContainerGap(596, Short.MAX_VALUE)
+                    .addContainerGap(635, Short.MAX_VALUE)
                     .addComponent(lbsaldo1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(521, 521, 521)))
         );
@@ -597,20 +584,21 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(painelVenda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbsaldo2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(lbiva, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(lbdesc, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                    .addComponent(lbiva, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lbdesc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbsaldo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(painelVenda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(painelVenda1Layout.createSequentialGroup()
                     .addGap(209, 209, 209)
                     .addComponent(lbsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(231, Short.MAX_VALUE)))
+                    .addContainerGap(257, Short.MAX_VALUE)))
             .addGroup(painelVenda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVenda1Layout.createSequentialGroup()
-                    .addContainerGap(240, Short.MAX_VALUE)
+                    .addContainerGap(266, Short.MAX_VALUE)
                     .addComponent(lbsaldo1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(200, 200, 200)))
         );
@@ -680,7 +668,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jBpesquisarProdVenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Comboproduto1, 0, 432, Short.MAX_VALUE)
+                .addComponent(Comboproduto1, 0, 471, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
                 .addComponent(jButton4)
                 .addContainerGap())
@@ -731,7 +719,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addComponent(lbtotalitem1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(273, 273, 273)
                 .addComponent(lbsalmed1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(416, Short.MAX_VALUE))
         );
         painelVenda2Layout.setVerticalGroup(
             painelVenda2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -739,11 +727,12 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addGroup(painelVenda2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbsalmed1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(lbtotalitem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lbtotalitem1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(lbsalmed1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("MOVIMENTO POR PRODUTO", painelVenda2);
@@ -839,7 +828,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addComponent(jBpesquisarProdFactura1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -899,7 +888,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVenda3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbdesc1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(72, 72, 72)
                 .addComponent(lbiva1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(lbsaldo5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -914,10 +903,10 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addGroup(painelVenda3Layout.createSequentialGroup()
                     .addGap(531, 531, 531)
                     .addComponent(lbsaldo3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(586, Short.MAX_VALUE)))
+                    .addContainerGap(625, Short.MAX_VALUE)))
             .addGroup(painelVenda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVenda3Layout.createSequentialGroup()
-                    .addContainerGap(596, Short.MAX_VALUE)
+                    .addContainerGap(635, Short.MAX_VALUE)
                     .addComponent(lbsaldo4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(521, 521, 521)))
         );
@@ -927,20 +916,21 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(painelVenda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbsaldo5, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(lbiva1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(lbdesc1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(painelVenda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbiva1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbdesc1, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                    .addComponent(lbsaldo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(painelVenda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(painelVenda3Layout.createSequentialGroup()
                     .addGap(209, 209, 209)
                     .addComponent(lbsaldo3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(231, Short.MAX_VALUE)))
+                    .addContainerGap(257, Short.MAX_VALUE)))
             .addGroup(painelVenda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVenda3Layout.createSequentialGroup()
-                    .addContainerGap(240, Short.MAX_VALUE)
+                    .addContainerGap(266, Short.MAX_VALUE)
                     .addComponent(lbsaldo4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(200, 200, 200)))
         );
@@ -978,14 +968,19 @@ public class ConsultasInternas extends javax.swing.JDialog {
 
         jLabel17.setText("ate");
 
-        webButton1.setText("Mais Vendidos");
-        webButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMaisVendas.setText("MAIS VENDIDOS");
+        btnMaisVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                webButton1ActionPerformed(evt);
+                btnMaisVendasActionPerformed(evt);
             }
         });
 
-        webButton2.setText("Menos Vendidos");
+        btnMenosVenda.setText("MENOS VENDIDOS");
+        btnMenosVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenosVendaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1001,10 +996,10 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addGap(36, 36, 36)
                 .addComponent(jdFim4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(webButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMaisVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(webButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMenosVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addContainerGap())
         );
@@ -1012,15 +1007,14 @@ public class ConsultasInternas extends javax.swing.JDialog {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(webButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(webButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jdInicio4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jdFim4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnMenosVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMaisVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jdInicio4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jdFim4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1047,11 +1041,11 @@ public class ConsultasInternas extends javax.swing.JDialog {
                     .addComponent(jScrollPane9))
                 .addContainerGap())
             .addGroup(painelVenda4Layout.createSequentialGroup()
-                .addGap(325, 325, 325)
+                .addGap(327, 327, 327)
                 .addComponent(lbtotalitem2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(273, 273, 273)
+                .addGap(277, 277, 277)
                 .addComponent(lbsalmed2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelVenda4Layout.setVerticalGroup(
             painelVenda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1059,11 +1053,12 @@ public class ConsultasInternas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelVenda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbsalmed2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbtotalitem2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 65, Short.MAX_VALUE)
+                .addGroup(painelVenda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbtotalitem2, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                    .addComponent(lbsalmed2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("ORDEM DE VENDAS", painelVenda4);
@@ -1072,17 +1067,15 @@ public class ConsultasInternas extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1090,15 +1083,11 @@ public class ConsultasInternas extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -1253,11 +1242,13 @@ public class ConsultasInternas extends javax.swing.JDialog {
                     }
                 }
             } else if (resp == 1) {
+                
                 int respo = JOptionPane.showOptionDialog(null, "Tem a certeza que quer anular a Factura?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                         null, new String[]{"SIM", "NÃO"}, null);
                 if (respo == 1 || respo == -1) {
                     return;
                 }
+                
                 List<Venda> le = new VendaJpaController(emf).getVenda(v.getDatavenda());
                 Venda venda = null;
                 for (Venda ep : le) {
@@ -1640,12 +1631,12 @@ public class ConsultasInternas extends javax.swing.JDialog {
             Icon iv = new javax.swing.ImageIcon(getClass().getResource("/Imagens/ico_ver.png"));
             ButtonColumn bv = new ButtonColumn(this.tabelaProforma, verp, 8, iv);
         } else if (jTabbedPane1.getSelectedIndex() == 4) {
-           Date d = new Date();
+            Date d = new Date();
             Calendar cal = new GregorianCalendar();
             cal.setTime(d);
             cal.set(Calendar.DAY_OF_MONTH, 1);
             Date n = cal.getTime();
-            jdInicio4.setDate(n); 
+            jdInicio4.setDate(n);
             listamaisvend = new VendaJpaController(emf).getMaisVendidosPeriodo(n, null);
             try {
                 mostraMaisVendidos(listamaisvend);
@@ -1657,8 +1648,8 @@ public class ConsultasInternas extends javax.swing.JDialog {
 //            this.tabelaMaisVend.getColumnModel().getColumn(0).setMaxWidth(0);
 //            this.tabelaMaisVend.getColumnModel().getColumn(0).setPreferredWidth(0);
             this.tabelaMaisVend.setRowHeight(30);
-          // Icon iv = new javax.swing.ImageIcon(getClass().getResource("/Imagens/ico_ver.png"));
-          //  ButtonColumn bv = new ButtonColumn(this.tabelaMaisVend, verp, 8, iv);
+            // Icon iv = new javax.swing.ImageIcon(getClass().getResource("/Imagens/ico_ver.png"));
+            //  ButtonColumn bv = new ButtonColumn(this.tabelaMaisVend, verp, 8, iv);
         }
     }//GEN-LAST:event_jTabbedPane1MouseReleased
 
@@ -1712,20 +1703,161 @@ public class ConsultasInternas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelaMaisVendMouseClicked
 
-    private void webButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton1ActionPerformed
+    private void btnMaisVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaisVendasActionPerformed
         // TODO add your handling code here:
-        
-         //listamaisvend.clear();
-              System.out.println(jdInicio4.getDate());
-            listamaisvend = new VendaJpaController(emf).getMaisVendidosPeriodo(jdInicio4.getDate(), jdFim4.getDate());
-             System.out.println("FDGDFG: "+listamaisvend.toString());
-             
         try {
-            mostraMaisVendidos(listamaisvend);
+
+            listamaisvend.clear();
+            listamaisvend = new VendaJpaController(emf).getMaisVendidosPeriodo(jdInicio4.getDate(), jdFim4.getDate());
+            mostraMaisVendidos();
+
         } catch (Exception ex) {
             Logger.getLogger(ConsultasInternas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_webButton1ActionPerformed
+    }//GEN-LAST:event_btnMaisVendasActionPerformed
+
+    private void btnMenosVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosVendaActionPerformed
+        // TODO add your handling code here:
+
+        try {
+
+            listamaisvend.clear();
+            listamaisvend = new VendaJpaController(emf).getMaisVendidosPeriodo(jdInicio4.getDate(), jdFim4.getDate());
+            mostraMenosVendidos();
+        } catch (Exception ex) {
+            Logger.getLogger(ConsultasInternas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnMenosVendaActionPerformed
+
+    public void mostraVenda() throws Exception {
+
+        while (vmodel.getRowCount() > 0) {
+            vmodel.removeRow(0);
+        }
+        int titem = 0;
+        float tvp = 0;
+        String[] linha = new String[]{null, null, null, null, null, null, null};
+        for (int i = 0; i < listavedas.size(); i++) {
+            float v = listavedas.get(i).getValor();
+            int t = 0;
+            if (v > 0) {
+                t = listavedas.get(i).getQc();
+            }
+            vmodel.addRow(linha);
+            vmodel.setValueAt(listavedas.get(i).getIdproduto().getNome(), i, 0);
+            vmodel.setValueAt(listavedas.get(i).getPrec(), i, 1);
+            vmodel.setValueAt(listavedas.get(i).getQc(), i, 2);
+            vmodel.setValueAt(listavedas.get(i).getQtd(), i, 3);
+            vmodel.setValueAt(v, i, 4);
+            vmodel.setValueAt(listavedas.get(i).getDesconto() + "%", i, 5);
+            vmodel.setValueAt(listavedas.get(i).getIdvendedor().getNomecompleto(), i, 6);
+            vmodel.setValueAt(new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(listavedas.get(i).getDatavenda()), i, 7);
+            if (listavedas.get(i).getEstado() == 0) {
+                vmodel.setValueAt("activa", i, 8);
+            }
+            if (listavedas.get(i).getEstado() == 1) {
+                vmodel.setValueAt("Restaurada", i, 8);
+            }
+            if (listavedas.get(i).getEstado() == 2) {
+                vmodel.setValueAt("Anulada", i, 8);
+            }
+            titem = titem + t;
+            tvp = tvp + v;
+        }
+        lbtotalitem.setText("Total Itens: " + titem);
+        lbsalmed.setText("Total Valor: " + tvp);
+    }
+
+    public void mostraMaisVendidos() throws Exception {
+
+        int qtds[] = new int[listamaisvend.size()];
+        for (int i = 0; i < listamaisvend.size(); i++) {
+            qtds[i] = listamaisvend.get(i).getQtd();
+        }
+        int mediana = (int) (getMaiorMenor(qtds, 0) + getMaiorMenor(qtds, 1)) / 2;
+
+        System.out.println("Menor > " + getMaiorMenor(qtds, 0));
+        System.out.println("Maior > " + getMaiorMenor(qtds, 1));
+        System.out.println("Mediana > " + mediana);
+
+        while (vmodel2.getRowCount() > 0) {
+            vmodel2.removeRow(0);
+        }
+
+        String[] linha = new String[]{null, null, null, null, null};
+        for (int i = 0; i < listamaisvend.size(); i++) {
+
+            if (listamaisvend.get(i).getQtd() >= mediana) {
+
+                vmodel2.addRow(linha);
+                vmodel2.setValueAt(listamaisvend.get(i).getIdproduto().getCodigo(), i, 0);
+                vmodel2.setValueAt(listamaisvend.get(i).getIdproduto().getNome(), i, 1);
+                vmodel2.setValueAt(listamaisvend.get(i).getIdproduto().getPrecovenda(), i, 2);
+                vmodel2.setValueAt(listamaisvend.get(i).getQtd(), i, 3);
+                double total = listamaisvend.get(i).getIdproduto().getPrecovenda() * listamaisvend.get(i).getQtd();
+                vmodel2.setValueAt(total, i, 4);
+
+            }
+        }
+    }
+
+    public void mostraMenosVendidos() throws Exception {
+
+        int qtds[] = new int[listamaisvend.size()];
+        for (int i = 0; i < listamaisvend.size(); i++) {
+            qtds[i] = listamaisvend.get(i).getQtd();
+        }
+        int mediana = (int) (getMaiorMenor(qtds, 0) + getMaiorMenor(qtds, 1)) / 2;
+
+        System.out.println("Menor > " + getMaiorMenor(qtds, 0));
+        System.out.println("Maior > " + getMaiorMenor(qtds, 1));
+        System.out.println("Mediana > " + mediana);
+
+        while (vmodel2.getRowCount() > 0) {
+            vmodel2.removeRow(0);
+        }
+        
+        int c = 0;
+        
+        String[] linha = new String[]{null, null, null, null, null};
+        for (int i = 0; i < listamaisvend.size(); i++) {
+
+            if (listamaisvend.get(i).getQtd() <= mediana) {
+                
+                vmodel2.addRow(linha);
+
+                vmodel2.setValueAt(listamaisvend.get(i).getIdproduto().getCodigo(), c, 0);
+                vmodel2.setValueAt(listamaisvend.get(i).getIdproduto().getNome(), c, 1);
+                vmodel2.setValueAt(listamaisvend.get(i).getIdproduto().getPrecovenda(), c, 2);
+                vmodel2.setValueAt(listamaisvend.get(i).getQtd(), c, 3);
+                double total = listamaisvend.get(i).getIdproduto().getPrecovenda() * listamaisvend.get(i).getQtd();
+                vmodel2.setValueAt(total, c, 4);
+                c++;
+
+            }
+        }
+    }
+
+    public int getMaiorMenor(int arr[], int ctr) {
+
+        int maior = arr[0];
+        int menor = arr[0];
+        int i = 0;
+        for (i = 0; i < arr.length; i++) {
+            if (arr[i] < maior) {
+                maior = arr[i];
+            }
+            if (arr[i] > menor) {
+                menor = arr[i];
+            }
+        }
+
+        if (ctr == 0) {
+            return maior;
+        } else {
+            return menor;
+        }
+    }
 
     public void analisarTab() throws Exception {
         if (jTabbedPane1.getSelectedIndex() == 0) {
@@ -1816,45 +1948,6 @@ public class ConsultasInternas extends javax.swing.JDialog {
 //        lbsalmed.setText("Total Valor: " + tvp);
     }
 
-    public void mostraVenda() throws Exception {
-
-        while (vmodel.getRowCount() > 0) {
-            vmodel.removeRow(0);
-        }
-        int titem = 0;
-        float tvp = 0;
-        String[] linha = new String[]{null, null, null, null, null, null, null};
-        for (int i = 0; i < listavedas.size(); i++) {
-            float v = listavedas.get(i).getValor();
-            int t = 0;
-            if (v > 0) {
-                t = listavedas.get(i).getQc();
-            }
-            vmodel.addRow(linha);
-            vmodel.setValueAt(listavedas.get(i).getIdproduto().getNome(), i, 0);
-            vmodel.setValueAt(listavedas.get(i).getPrec(), i, 1);
-            vmodel.setValueAt(listavedas.get(i).getQc(), i, 2);
-            vmodel.setValueAt(listavedas.get(i).getQtd(), i, 3);
-            vmodel.setValueAt(v, i, 4);
-            vmodel.setValueAt(listavedas.get(i).getDesconto() + "%", i, 5);
-            vmodel.setValueAt(listavedas.get(i).getIdvendedor().getNomecompleto(), i, 6);
-            vmodel.setValueAt(new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(listavedas.get(i).getDatavenda()), i, 7);
-            if (listavedas.get(i).getEstado() == 0) {
-                vmodel.setValueAt("activa", i, 8);
-            }
-            if (listavedas.get(i).getEstado() == 1) {
-                vmodel.setValueAt("Restaurada", i, 8);
-            }
-            if (listavedas.get(i).getEstado() == 2) {
-                vmodel.setValueAt("Anulada", i, 8);
-            }
-            titem = titem + t;
-            tvp = tvp + v;
-        }
-        lbtotalitem.setText("Total Itens: " + titem);
-        lbsalmed.setText("Total Valor: " + tvp);
-    }
-    
     public void mostraMaisVendidos(List<Venda> listamaisvend) throws Exception {
 
         while (vmodel2.getRowCount() > 0) {
@@ -1875,7 +1968,7 @@ public class ConsultasInternas extends javax.swing.JDialog {
             vmodel2.setValueAt(listamaisvend.get(i).getQc(), i, 2);
             vmodel2.setValueAt(listamaisvend.get(i).getQtd(), i, 3);
             vmodel2.setValueAt(v, i, 4);
-           
+
             titem = titem + t;
             tvp = tvp + v;
         }
@@ -2035,6 +2128,8 @@ public class ConsultasInternas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Comboproduto;
     private javax.swing.JComboBox Comboproduto1;
+    private com.alee.laf.button.WebButton btnMaisVendas;
+    private com.alee.laf.button.WebButton btnMenosVenda;
     private javax.swing.JComboBox cbtipo;
     private javax.swing.JComboBox cbvendedor;
     private javax.swing.JComboBox cbvendedor1;
@@ -2118,7 +2213,5 @@ public class ConsultasInternas extends javax.swing.JDialog {
     private javax.swing.JTable tabelaProforma;
     private javax.swing.JTextField txtsfact;
     private javax.swing.JTextField txtsfact1;
-    private com.alee.laf.button.WebButton webButton1;
-    private com.alee.laf.button.WebButton webButton2;
     // End of variables declaration//GEN-END:variables
 }

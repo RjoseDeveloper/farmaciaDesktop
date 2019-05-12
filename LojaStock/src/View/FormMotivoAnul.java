@@ -5,55 +5,9 @@
  */
 package View;
 
-import static View.VendaEmprestimo.lproe;
-import static View.VendaEmprestimo.lprov;
-import controller.ProdutoJpaController;
-import controller.VendaJpaController;
-import controller.ClienteJpaController;
-import controller.DetalorgJpaController;
-import controller.EmprestimoJpaController;
-import controller.EntradaJpaController;
-import controller.VendedorJpaController;
-import controller.exceptions.NonexistentEntityException;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import metodos.ValidarFloat;
-import metodos.ValidarInteiro;
-import metodos.ValidarString;
-import modelo.Produto;
-import modelo.Cliente;
-import java.util.List;
-import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.Copies;
 import javax.swing.ImageIcon;
-import javax.swing.SwingWorker;
-import modelo.Detalorg;
-import modelo.Emprestimo;
-import modelo.Entrada;
-import modelo.Venda;
-import modelo.Vendedor;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 
 /**
  *
@@ -193,7 +147,7 @@ public class FormMotivoAnul extends javax.swing.JDialog {
             txmotivo.grabFocus();
             return;
         }
-        ConsultasInternas1.motivo=txmotivo.getText();
+        ConsultasInternas.motivo=txmotivo.getText();
 
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -20,18 +20,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -41,19 +35,16 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jTabbedPane1" alignment="0" pref="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
-                  <Component id="jTabbedPane1" min="-2" pref="487" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" min="-2" pref="513" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -73,10 +64,10 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="463" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelHistory" min="-2" pref="309" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="494" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -152,7 +143,7 @@
                           <Component id="lbtotalitem" min="-2" pref="142" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
                           <Component id="lbsalmed" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace pref="377" max="32767" attributes="0"/>
+                          <EmptySpace pref="416" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -162,10 +153,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane6" min="-2" pref="339" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" pref="309" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbtotalitem" pref="28" max="32767" attributes="0"/>
+                              <Component id="lbtotalitem" pref="54" max="32767" attributes="0"/>
                               <Component id="lbsalmed" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -201,7 +192,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jBpesquisarProdVenda" min="-2" pref="185" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Comboproduto" pref="432" max="32767" attributes="0"/>
+                              <Component id="Comboproduto" pref="471" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -365,7 +356,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="453" max="32767" attributes="0"/>
+                          <EmptySpace pref="492" max="32767" attributes="0"/>
                           <Component id="lbdesc" min="-2" pref="142" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           <Component id="lbiva" min="-2" pref="142" max="-2" attributes="0"/>
@@ -385,12 +376,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="531" max="-2" attributes="0"/>
                               <Component id="lbsaldo" min="-2" pref="142" max="-2" attributes="0"/>
-                              <EmptySpace pref="586" max="32767" attributes="0"/>
+                              <EmptySpace pref="625" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="596" max="32767" attributes="0"/>
+                              <EmptySpace pref="635" max="32767" attributes="0"/>
                               <Component id="lbsaldo1" min="-2" pref="142" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="521" max="-2" attributes="0"/>
                           </Group>
@@ -403,24 +394,25 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" pref="61" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane8" min="-2" pref="330" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jScrollPane8" min="-2" pref="298" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbsaldo2" pref="35" max="32767" attributes="0"/>
-                              <Component id="lbiva" pref="35" max="32767" attributes="0"/>
-                              <Component id="lbdesc" alignment="0" pref="35" max="32767" attributes="0"/>
+                              <Component id="lbiva" alignment="0" pref="50" max="32767" attributes="0"/>
+                              <Component id="lbdesc" alignment="1" max="32767" attributes="0"/>
+                              <Component id="lbsaldo2" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                               <Component id="lbsaldo" min="-2" pref="14" max="-2" attributes="0"/>
-                              <EmptySpace pref="231" max="32767" attributes="0"/>
+                              <EmptySpace pref="257" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="240" max="32767" attributes="0"/>
+                              <EmptySpace pref="266" max="32767" attributes="0"/>
                               <Component id="lbsaldo1" min="-2" pref="14" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
@@ -750,7 +742,7 @@
                           <Component id="lbtotalitem1" min="-2" pref="142" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
                           <Component id="lbsalmed1" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace pref="377" max="32767" attributes="0"/>
+                          <EmptySpace pref="416" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -760,12 +752,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" min="-2" pref="339" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" min="-2" pref="307" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbsalmed1" alignment="0" pref="39" max="32767" attributes="0"/>
-                              <Component id="lbtotalitem1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbtotalitem1" pref="54" max="32767" attributes="0"/>
+                              <Component id="lbsalmed1" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -798,7 +791,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jBpesquisarProdVenda1" min="-2" pref="185" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Comboproduto1" pref="432" max="32767" attributes="0"/>
+                              <Component id="Comboproduto1" pref="471" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -964,7 +957,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="lbdesc1" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                           <Component id="lbiva1" min="-2" pref="142" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="lbsaldo5" min="-2" pref="142" max="-2" attributes="0"/>
@@ -982,12 +975,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="531" max="-2" attributes="0"/>
                               <Component id="lbsaldo3" min="-2" pref="142" max="-2" attributes="0"/>
-                              <EmptySpace pref="586" max="32767" attributes="0"/>
+                              <EmptySpace pref="625" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="596" max="32767" attributes="0"/>
+                              <EmptySpace pref="635" max="32767" attributes="0"/>
                               <Component id="lbsaldo4" min="-2" pref="142" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="521" max="-2" attributes="0"/>
                           </Group>
@@ -1000,24 +993,25 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane10" min="-2" pref="323" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbsaldo5" alignment="0" pref="35" max="32767" attributes="0"/>
-                              <Component id="lbiva1" alignment="0" pref="35" max="32767" attributes="0"/>
-                              <Component id="lbdesc1" alignment="0" pref="35" max="32767" attributes="0"/>
+                          <Component id="jScrollPane10" min="-2" pref="298" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lbiva1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbdesc1" pref="62" max="32767" attributes="0"/>
+                              <Component id="lbsaldo5" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                               <Component id="lbsaldo3" min="-2" pref="14" max="-2" attributes="0"/>
-                              <EmptySpace pref="231" max="32767" attributes="0"/>
+                              <EmptySpace pref="257" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="240" max="32767" attributes="0"/>
+                              <EmptySpace pref="266" max="32767" attributes="0"/>
                               <Component id="lbsaldo4" min="-2" pref="14" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
@@ -1076,7 +1070,7 @@
                               <Component id="jBpesquisarProdFactura1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButton5" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace pref="273" max="32767" attributes="0"/>
+                              <EmptySpace pref="312" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1307,11 +1301,11 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="325" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
                           <Component id="lbtotalitem2" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
                           <Component id="lbsalmed2" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace pref="377" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1321,12 +1315,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel9" min="-2" pref="47" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane9" min="-2" pref="362" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbsalmed2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lbtotalitem2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane9" min="-2" pref="277" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" pref="65" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lbtotalitem2" pref="63" max="32767" attributes="0"/>
+                              <Component id="lbsalmed2" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1357,10 +1352,10 @@
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="jdFim4" min="-2" pref="186" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="webButton1" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="btnMaisVendas" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="webButton2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnMenosVenda" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="337" max="32767" attributes="0"/>
                               <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1370,16 +1365,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="webButton2" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="webButton1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jdInicio4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jdFim4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnMenosVenda" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnMaisVendas" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jdInicio4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton6" max="32767" attributes="0"/>
+                                  <Component id="jdFim4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -1424,18 +1417,21 @@
                         <Property name="text" type="java.lang.String" value="ate"/>
                       </Properties>
                     </Component>
-                    <Component class="com.alee.laf.button.WebButton" name="webButton1">
+                    <Component class="com.alee.laf.button.WebButton" name="btnMaisVendas">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Mais Vendidos"/>
+                        <Property name="text" type="java.lang.String" value="MAIS VENDIDOS"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="webButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaisVendasActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="com.alee.laf.button.WebButton" name="webButton2">
+                    <Component class="com.alee.laf.button.WebButton" name="btnMenosVenda">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Menos Vendidos"/>
+                        <Property name="text" type="java.lang.String" value="MENOS VENDIDOS"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenosVendaActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
